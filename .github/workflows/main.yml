@@ -2,7 +2,10 @@
 name: Build and Test
 
 # This workflow will run on any push to the repository
-on: push
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   test:
@@ -12,7 +15,7 @@ jobs:
     steps:
       # Each step has a name, some code, and some options
       - name: Check out the code
-        uses: actions/checkout@v3 # This is a reference to some code to run
+        uses: actions/checkout@v2 # This is a reference to some code to run
 
       - name: Install pyenv
         run: |
