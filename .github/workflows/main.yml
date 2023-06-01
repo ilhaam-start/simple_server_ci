@@ -21,9 +21,9 @@ jobs:
           python-version: 3.8
 
       # This step lists the available python versions
-      - name: List available Python versions
-        run: | 
-          python -m pipenv --pythons
+      # - name: List available Python versions
+      #   run: | 
+      #     python -m pipenv --pythons
 
       # This step installs pip, pipenv, and our dependencies
       - name: Install dependencies
