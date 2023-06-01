@@ -14,16 +14,19 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v3 # This is a reference to some code to run
 
-      # This step installs the Python version we want
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.8
+      - name: Install pyenv
+        run: |
+          git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+          echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.bashrc
+          echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.bashrc
+          echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init --path)"\nfi' >> $HOME/.bashrc
+          exec "$SHELL"
 
-      # This step lists the available python versions
-      # - name: List available Python versions
-      #   run: | 
-      #     python -m pipenv --pythons
+      - name: Install Python 3.11.0
+        run: pyenv install 3.11.0
+
+      - name: Set up Python 3.11.0
+        run: pyenv global 3.11.0
 
       # This step installs pip, pipenv, and our dependencies
       - name: Install dependencies
