@@ -20,6 +20,11 @@ jobs:
         with:
           python-version: 3.11
 
+      # This step lists the available python versions
+      - name: List available Python versions
+        run: | 
+          python -m pipenv --pythons
+
       # This step installs pip, pipenv, and our dependencies
       - name: Install dependencies
         run: | # Note that there's no reference here — just commands to run
@@ -31,4 +36,3 @@ jobs:
       - name: Test with pytest
         run: |
           pipenv run pytest
-          
